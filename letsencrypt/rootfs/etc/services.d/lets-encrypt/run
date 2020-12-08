@@ -133,6 +133,9 @@ fi
 
 # Get the last modified cert directory and copy the cert and private key to store
 # shellcheck disable=SC2012
-CERT_DIR_LATEST="$(ls -td $CERT_DIR/live/*/ | head -1)"
-cp "${CERT_DIR_LATEST}privkey.pem" "/ssl/${CERT_DIR}-${KEYFILE}"
-cp "${CERT_DIR_LATEST}fullchain.pem" "/ssl/${CERT_DIR}-${CERTFILE}"
+
+for d in $(ls -td $CERT_DIR/live); do
+    echo "copying files for: $d"
+    cp "$CERT_DIR/live/$d/privkey.pem" "/ssl/${d}-${KEYFILE}"
+    cp "$CERT_DIR/live/$d/fullchain.pem" "/ssl/${d}-${CERTFILE}"
+done
