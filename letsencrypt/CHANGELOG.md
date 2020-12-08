@@ -1,5 +1,7 @@
 # Changelog
 
+## added support for multiple certs
+
 ## 4.11.0
 
 - Add support for Njalla DNS
